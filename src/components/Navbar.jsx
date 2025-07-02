@@ -8,7 +8,7 @@ import Ellipse from '../assets/Navbar-assets/Ellipse 1.png'
 
 const Navbar = () => {
     return (
-        <div className='flex items-center justify-between px-4 mt-4  '>
+        <div className='flex items-center justify-between px-4 mt-4 '>
             {/* Left Side */}
             <div className="flex gap-4 items-center">
                 <img src={PanelImg} alt="Panel Image" className='w-4 h-4' />
@@ -26,13 +26,20 @@ const Navbar = () => {
             {/* Right Side */}
             <div className="flex items-center gap-1">
                 <div className="bg-[#E2E2E2] flex items-center p-3 gap-2 rounded-md">
-                    <img src={Search} alt="Search" className='w-4 h-4'/>
+                    <img src={Search} alt="Search" className='w-4 h-4' />
                     <span className='text-[#757575] text-xs'>Search within sheet</span>
                 </div>
 
                 <div className="flex items-center gap-1">
-                    <img src={Alert} alt="Alert" className='w-6 h-6' />
-                    <img src={NotificationCount} alt="NotoficationCount" className='h-4 w-4 absolute right-30 top-[19px]' />
+                    <div className="relative">
+                        <img src={Alert} alt="Alert" className="w-6 h-6" />
+                        <img
+                            src={NotificationCount}
+                            alt="NotificationCount"
+                            className="h-4 w-4 absolute -top-1 -right-1"
+                        />
+                    </div>
+
                     <div className="flex items-center px-2 py-1.5 gap-2">
                         <img src={Ellipse} alt="Ellipse" className='h-7 w-7' />
                         <div className="flex flex-col space-y-[-5px] ">
