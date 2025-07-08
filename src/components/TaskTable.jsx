@@ -1,14 +1,28 @@
 // components/FinancialTable.jsx
 import React from "react";
 import DataTable from "react-data-table-component";
+import ExportLink from '../assets/Table-assets/Link.png'
+import ArrowSync from '../assets/Table-assets/Arrow Sync.png'
+import ArrowSplit from '../assets/Table-assets/Arrow Split (1).png'
+import IconFrame from '../assets/Table-assets/Icon_frame.png'
+import ArrowSplit2 from '../assets/Table-assets/Arrow Split (2).png'
+import Add from '../assets/Table-assets/Add.png'
+import hash from '../assets/Table-Header-assets/Icon+Title.png'
+import Briefcase from '../assets/Table-Header-assets/Briefcase.png'
+import Calendar from '../assets/Table-Header-assets/Calendar.png'
+import Chevron1 from '../assets/Table-Header-assets/Chevron (1).png'
+import Globe from '../assets/Table-Header-assets/Globe.png'
+import Person from '../assets/Table-Header-assets/Person.png'
+import Shape from '../assets/Table-Header-assets/Shape.png'
+import ChevronCircle from '../assets/Table-Header-assets/Chevron Circle.png'
 
 const realData = [
     {
-        job: "Launch social media campaign for product",
+        job: "Launch social media campaign for pro...",
         submitted: "15-11-2024",
         status: "In-process",
         submitter: "Aisha Patel",
-        url: "www.aishapatel.com",
+        url: "www.aishapatel...",
         assigned: "Sophie Choudhury",
         priority: "Medium",
         dueDate: "20-11-2024",
@@ -19,18 +33,18 @@ const realData = [
         submitted: "28-10-2024",
         status: "Need to start",
         submitter: "Irfan Khan",
-        url: "www.irfankhan.com",
+        url: "www.irfankhanp.",
         assigned: "Tejas Pandey",
         priority: "High",
         dueDate: "30-10-2024",
         value: "3,500,000 ₹",
     },
     {
-        job: "Finalize user testing feedback for app",
+        job: "Finalize user testing feedback for app...",
         submitted: "05-12-2024",
         status: "In-process",
         submitter: "Mark Johnson",
-        url: "www.markjohnson.com",
+        url: "www.markjohns..",
         assigned: "Rachel Lee",
         priority: "Medium",
         dueDate: "10-12-2024",
@@ -41,7 +55,7 @@ const realData = [
         submitted: "10-01-2025",
         status: "Complete",
         submitter: "Emily Green",
-        url: "www.emilygreen.com",
+        url: "www.emilygreen.",
         assigned: "Tom Wright",
         priority: "Low",
         dueDate: "15-01-2025",
@@ -52,7 +66,7 @@ const realData = [
         submitted: "25-01-2025",
         status: "Blocked",
         submitter: "Jessica Brown",
-        url: "www.jessicabrown.com",
+        url: "www.jessicabro...",
         assigned: "Kevin Smith",
         priority: "Low",
         dueDate: "30-01-2025",
@@ -65,78 +79,138 @@ const data = Array.from({ length: 25 }, (_, i) => realData[i] || {});
 
 const columns = [
     {
-        name: "#",
+        name: <span className="absolute right-1"><img src={hash} alt="hash" /></span>,
         selector: (_, index) => index + 1,
-        width: "50px",
+        width: "32px",
         cell: (_, index) => (
-            <div className="w-full text-center">{index + 1}</div>
-        )
-    }
-    ,
-    {
-        name: "Job Request",
-        selector: (row) => row.job || "",
+            <div
+                className="text-[#757575] absolute right-0.5 text-[12px] w-[32px] h-[32px] flex items-center justify-center"
+                style={{ margin: 0, padding: 0 }}
+            >
+                {index + 1}
+            </div>
+        ),
     },
     {
-        name: "Submitted",
-        selector: (row) => row.submitted || "",
+        name: <span className="flex justify-between gap-34 text-xs">
+            <div className="flex gap-1">
+                <img src={Briefcase} alt="Briefcase" />
+                <span>Job Request</span>
+            </div>
+            <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
+        </span>,
+        selector: (row) => <span className="text-xs">{row.job}</span> || "",
+        width: "256px"
     },
     {
-        name: "Status",
-        selector: (row) => row.status || "",
-        cell: (row) => {
-            if (!row.status) return "";
-            const bg =
-                row.status === "In-process"
-                    ? "bg-yellow-100 text-yellow-700"
-                    : row.status === "Need to start"
-                        ? "bg-blue-100 text-blue-700"
-                        : row.status === "Blocked"
-                            ? "bg-red-100 text-red-700"
-                            : "bg-green-100 text-green-700";
+        name: <span className="text-xs flex gap-3">
+            <div className="flex gap-1">
+                <img src={Calendar} alt="calendar" />
+                <span>Submitted</span>
+            </div>
+            <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
+        </span>,
+        selector: (row) => <span className="text-xs">{row.submitted}</span> || "",
+        width: "124px",
+        cell: (row, rowIndex) => {
+            const isTarget = rowIndex === 7;
             return (
-                <span className={`text-xs font-medium px-2 py-1 rounded-full ${bg}`}>
-                    {row.status}
-                </span>
+                <div
+                     className={`absolute inset-0 border-[#6C8B70] text-xs flex items-center justify-center ${
+        isTarget ? "border-2 shadow-xl  bg-white z-10" : ""
+      }`}
+                >
+                    {row.submitted}
+                </div>
             );
         },
     },
     {
-        name: "Submitter",
-        selector: (row) => row.submitter || "",
+        name: <span className="text-xs flex gap-10">
+            <div className="flex gap-1">
+                <img src={ChevronCircle} alt="circle" />
+                <span>Status</span>
+            </div>
+            <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
+        </span>,
+        selector: (row) => <span className="text-xs">{row.status}</span> || "",
+        cell: (row) => {
+            if (!row.status) return "";
+            const bg =
+                row.status === "In-process"
+                    ? "bg-[#FFF3D6] text-[#85640B]"
+                    : row.status === "Need to start"
+                        ? "bg-[#E2E8F0] text-[#475569]"
+                        : row.status === "Blocked"
+                            ? "bg-red-100 text-red-700"
+                            : "bg-[#D3F2E3] text-[#0A6E3D]";
+            return (
+                <div className="w-full text-center">
+                    <span
+                        className={`text-xs font-medium px-2 py-1 rounded-full ${bg}`}
+                    >
+                        {row.status}
+                    </span>
+                </div>
+            );
+        },
+        width: "124px"
     },
     {
-        name: "",
-        selector: (row) => row.url || "",
+        name: <span className="text-xs flex gap-4">
+            <div className="flex gap-1">
+                <img src={Person} alt="person" />
+                <span>Submitter</span>
+            </div>
+            <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
+        </span>,
+        selector: (row) => <span className="text-xs">{row.submitter}</span> || "",
+        width: "124px"
+    },
+    {
+        name: <span className="text-xs flex gap-14">
+            <div className="flex gap-1">
+                <img src={Globe} alt="globe" />
+                <span>URL</span>
+            </div>
+            <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
+        </span>,
+        selector: (row) => <span className="text-xs">{row.url}</span> || "",
+        width: "124px",
         cell: (row) =>
             row.url ? (
-                <a
-                    href={`https://${row.url}`}
-                    className="text-blue-500 underline text-sm"
-                    target="_blank"
-                    rel="noreferrer"
+                <span
+
+                    className="text-[#121212] underline text-xs"
+
                 >
                     {row.url}
-                </a>
+                </span>
             ) : (
                 ""
             ),
     },
     {
-        name: "Assigned",
-        selector: (row) => row.assigned || "",
+        id: "assigned-column",
+        name: (<span className="text-xs flex gap-1">
+            <img src={Shape} alt="shape" />
+            <span>Assigned</span>
+        </span>),
+        selector: (row) => <span className="text-xs ">{row.assigned}</span> || "",
+        width: "124px"
     },
     {
-        name: "Priority",
+        name: <span className="absolute left-2">Priority</span>,
+        width: "125px",
         selector: (row) => row.priority || "",
         cell: (row) =>
             row.priority ? (
                 <span
-                    className={`text-sm font-medium ${row.priority === "High"
-                        ? "text-red-600"
+                    className={`text-xs text-center w-full font-medium ${row.priority === "High"
+                        ? "text-[#EF4D44]"
                         : row.priority === "Medium"
-                            ? "text-yellow-600"
-                            : "text-blue-600"
+                            ? "text-[#C29210]"
+                            : "text-[#1A8CFF]"
                         }`}
                 >
                     {row.priority}
@@ -146,16 +220,19 @@ const columns = [
             ),
     },
     {
-        name: "Due Date",
-        selector: (row) => row.dueDate || "",
+        name: <span className="absolute left-2">Due Date</span>,
+        selector: (row) => <span className="text-xs ml-6">{row.dueDate}</span> || "",
+        width: "125px"
     },
     {
-        name: "Est. Value",
-        selector: (row) => row.value || "",
+        name: <span className="absolute left-2">Est. Value</span>,
+        selector: (row) => <span className="text-xs  ml-7 ">{row.value} </span> || "",
+        width: "125px"
     },
     {
-        name: "+",
+        name: "",
         selector: () => "",
+        width: "125px"
     },
 ];
 
@@ -164,59 +241,85 @@ const customStyles = {
         style: {
             backgroundColor: "#E2E2E2",
             minHeight: "40px",
-            borderBottom: "1px solid #DDD",
+            borderBottom: "1px solid #FFF",
         },
     },
     headCells: {
         style: {
             fontWeight: "600",
             fontSize: "12px",
-            border: "1px solid #EEE",
-            backgroundColor: "#E2E2E2",
+            border: "1px solid #FFF",
+            backgroundColor: columns.id === "assigned-column" ? "#83A588" : "#EEE",
         },
     },
     rows: {
         style: {
             minHeight: "38px",
             backgroundColor: "#FFF",
-            borderBottom: "1px solid #EEE",
+            borderBottom: "1px solid #FFF",
         },
     },
     cells: {
         style: {
             border: "1px solid #EEE",
-            fontSize: "13px",
+            fontSize: "14px",
         },
     },
 };
 
 const FinancialTable = () => {
     return (
-        <div className="p-4 w-full overflow-x-auto">
-            {/* Entire scrollable content */}
+        <div className="pt-2 w-full overflow-x-auto">
             <div className="min-w-[1300px]">
-                {/* Merged Headers in the scrollable zone */}
-                <div className="grid grid-cols-[50px_1fr_120px_100px_120px_180px_40px_160px_100px_120px_140px_40px] text-xs font-medium w-full">
-                    <div className="h-10 bg-[#EEE] border border-[#EEE]"></div>
-                    <div className="col-span-4 h-10 bg-[#EEE] border border-[#EEE] flex items-center justify-center">
-                        Q3 Financial Overview
+                {/* Custom row headers with merged logic */}
+                <div className="grid grid-cols-[32px_256px_124px_124px_124px_124px_124px_125px_125px_124px_124px] w-full text-xs font-medium">
+
+                    {/* 1st column: # (blank for header row) */}
+                    <div className="h-10 border border-[#EEE] "></div>
+
+                    {/* 2nd to 5th column: Q3 Financial Overview */}
+                    <div className="col-span-4 h-10 px-2 bg-[#E2E2E2] border border-[#EEE] gap-2  flex items-center">
+                        <div
+                            className="bg-[#EEE] ml-2 px-2 rounded-sm text-xs font-medium gap-1 flex items-center"
+                            style={{ width: "158px", height: "24px" }}
+                        >
+                            <img src={ExportLink} alt="Link" />
+                            <span className="text-[#545454]">Q3 Financial Overview</span>
+                        </div>
+                        <img src={ArrowSync} alt="Sync" />
                     </div>
-                    <div className="h-10 bg-[#EEE] border border-[#EEE]"></div>
+
+                    {/* 6th column (URL) - blank header */}
+                    <div className="h-10 border border-[#EEE]"></div>
+
+                    {/* 7th column (Assigned) - ABC */}
+                    <div className="h-10 w-[124px]  bg-[#D2E0D4] border  border-[#EEE] flex gap-1 items-center justify-center">
+                        <img src={ArrowSplit} className="w-4 h-4" alt="Split" />
+                        <span className="text-[#505450]">ABC</span>
+                        <img src={IconFrame} alt="Frame" />
+                    </div>
+
+                    {/* 8th & 9th columns (Priority + DueDate) - Answer a question */}
+                    <div className="col-span-2 h-10 bg-[#DCCFFC] border gap-1.5 border-[#EEE] flex items-center justify-center">
+                        <img src={ArrowSplit2} alt="Split" />
+                        <span className="text-[#463E59]">Answer a question</span>
+                        <img src={IconFrame} alt="Frame" />
+                    </div>
+
+                    {/* 10th column (Est. Value) - Extract */}
+                    <div className="h-10 bg-[#FAC2AF] border border-[#EEE] gap-1 flex items-center justify-center">
+                        <img src={ArrowSplit2} alt="Split" />
+                        <span className="text-[#695149]">Extract</span>
+                        <img src={IconFrame} alt="Frame" />
+                    </div>
+
+                    {/* 11th column (+) */}
                     <div className="h-10 bg-[#EEE] border border-[#EEE] flex items-center justify-center">
-                        ABC
-                    </div>
-                    <div className="col-span-2 h-10 bg-[#EEE] border border-[#EEE] flex items-center justify-center">
-                        Answer a question
-                    </div>
-                    <div className="h-10 bg-[#EEE] border border-[#EEE] flex items-center justify-center">
-                        Extract
-                    </div>
-                    <div className="h-10 bg-[#EEE] border border-[#EEE] flex items-center justify-center">
-                        +
+                        <img src={Add} alt="Add" />
                     </div>
                 </div>
 
-                {/* The data table */}
+                {/* Actual Data Table */}
                 <DataTable
                     columns={columns}
                     data={data}
@@ -229,7 +332,6 @@ const FinancialTable = () => {
                 />
             </div>
         </div>
-
     );
 };
 
