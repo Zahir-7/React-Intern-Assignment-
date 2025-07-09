@@ -92,10 +92,10 @@ const columns = [
         ),
     },
     {
-        name: <span className="flex justify-between gap-34 text-xs">
-            <div className="flex gap-1">
+        name: <span className="flex justify-between gap-15 text-xs">
+            <div className="flex w-40 gap-1 ">
                 <img src={Briefcase} alt="Briefcase" />
-                <span>Job Request</span>
+                <span className="text-[#757575]">Job Request</span>
             </div>
             <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
         </span>,
@@ -106,7 +106,7 @@ const columns = [
         name: <span className="text-xs flex gap-3">
             <div className="flex gap-1">
                 <img src={Calendar} alt="calendar" />
-                <span>Submitted</span>
+                <span className="text-[#757575]">Submitted</span>
             </div>
             <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
         </span>,
@@ -129,7 +129,7 @@ const columns = [
         name: <span className="text-xs flex gap-10">
             <div className="flex gap-1">
                 <img src={ChevronCircle} alt="circle" />
-                <span>Status</span>
+                <span className="text-[#757575]">Status</span>
             </div>
             <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
         </span>,
@@ -160,7 +160,7 @@ const columns = [
         name: <span className="text-xs flex gap-4">
             <div className="flex gap-1">
                 <img src={Person} alt="person" />
-                <span>Submitter</span>
+                <span className="text-[#757575]">Submitter</span>
             </div>
             <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
         </span>,
@@ -171,7 +171,7 @@ const columns = [
         name: <span className="text-xs flex gap-14">
             <div className="flex gap-1">
                 <img src={Globe} alt="globe" />
-                <span>URL</span>
+                <span className="text-[#757575]">URL</span>
             </div>
             <div><img src={Chevron1} className="absolute top-2.5" alt="dropdown" /></div>
         </span>,
@@ -181,7 +181,7 @@ const columns = [
             row.url ? (
                 <span
 
-                    className="text-[#121212] underline text-xs"
+                    className="text-[#121212] underline absolute text-xs"
 
                 >
                     {row.url}
@@ -191,16 +191,17 @@ const columns = [
             ),
     },
     {
-        id: "assigned-column",
-        name: (<span className="text-xs flex gap-1">
+        name: (<div className="text-xs flex ">
             <img src={Shape} alt="shape" />
-            <span>Assigned</span>
-        </span>),
+            <span className="text-[#666C66] absolute left-9">Assigned</span>
+        </div>),
         selector: (row) => <span className="text-xs ">{row.assigned}</span> || "",
         width: "124px"
     },
     {
-        name: <span className="absolute left-2">Priority</span>,
+        name: <div className="  bg-[#EAE3FC] w-[130px] left-0 absolute h-full">
+            <span className="text-[#655C80] absolute left-2 top-1.5">Priority</span>
+        </div>,
         width: "125px",
         selector: (row) => row.priority || "",
         cell: (row) =>
@@ -220,12 +221,16 @@ const columns = [
             ),
     },
     {
-        name: <span className="absolute left-2">Due Date</span>,
+        name: <div className="  bg-[#EAE3FC] w-[130px] left-0 absolute h-full">
+            <span className="text-[#655C80] absolute left-2 top-1.5">Due Date</span>
+        </div>,
         selector: (row) => <span className="text-xs ml-6">{row.dueDate}</span> || "",
         width: "125px"
     },
     {
-        name: <span className="absolute left-2">Est. Value</span>,
+        name: <div className="  bg-[#FFE9E0] w-[130px] left-0 absolute h-full">
+            <span className="text-[#8C6C62] absolute left-2 top-1.5">Est. Value</span>
+        </div>,
         selector: (row) => <span className="text-xs  ml-7 ">{row.value} </span> || "",
         width: "125px"
     },
@@ -261,7 +266,7 @@ const customStyles = {
     },
     cells: {
         style: {
-            border: "1px solid #EEE",
+            border: "1px solid #F5F5F5",
             fontSize: "14px",
         },
     },
@@ -269,7 +274,7 @@ const customStyles = {
 
 const FinancialTable = () => {
     return (
-        <div className="pt-2 w-full overflow-x-auto">
+        <div className="pt-1 w-full">
             <div className="min-w-[1300px]">
                 {/* Custom row headers with merged logic */}
                 <div className="grid grid-cols-[32px_256px_124px_124px_124px_124px_124px_125px_125px_124px_124px] w-full text-xs font-medium">

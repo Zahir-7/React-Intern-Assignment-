@@ -8,7 +8,7 @@ import Ellipse from '../assets/Navbar-assets/Ellipse 1.png'
 
 const Navbar = () => {
     return (
-        <div className='flex items-center justify-between px-4 mt-4 '>
+        <div className='flex items-center justify-between px-4 mt-2 '>
             {/* Left Side */}
             <div className="flex gap-4 items-center">
                 <img src={PanelImg} alt="Panel Image" className='w-4 h-4' />

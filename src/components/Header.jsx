@@ -11,7 +11,7 @@ import ArrowSplit from '../assets/Header-assets/Arrow Split.png'
 
 const Header = () => {
     return (
-        <div className='flex items-center justify-between mx-4 mt-2'>
+        <div className='flex items-center justify-between mx-4 mt-1'>
 
             {/* Left Side */}
             <div className="flex gap-2 items-center text-[#121212] ">
